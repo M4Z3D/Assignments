@@ -1,4 +1,4 @@
-﻿using System.ComponentModel.Design;
+using System.ComponentModel.Design;
 using System.Linq;
 
 namespace Password_Validator
@@ -35,6 +35,8 @@ namespace Password_Validator
 
             int numbersOfCharacters = password.Length;
 
+
+            // Checks for minimum and max characters
             if (numbersOfCharacters < 12)
             {
                 Console.ForegroundColor = ConsoleColor.DarkRed;
@@ -48,7 +50,7 @@ namespace Password_Validator
                 Console.WriteLine("Your password is too long exceeds 64 characters");
                 Console.ResetColor();
             }
-
+            //checks for upper and lower case letters and special characters
             else
             {
                 bool hasUpperCase = password.Any(char.IsUpper);
@@ -64,7 +66,7 @@ namespace Password_Validator
                     Console.ResetColor();
                 }
 
-
+                
                 else if (!hasSpecialCharacters)
                 {
                     Console.ForegroundColor = ConsoleColor.DarkRed;
@@ -72,7 +74,7 @@ namespace Password_Validator
                     Console.ResetColor();
                 }
 
-
+                // Checks for consequtive characters and numbers
                 else if (hasSpecialCharacters)
                 {
                     string badNumbersR1 = "1234567890";
@@ -80,7 +82,7 @@ namespace Password_Validator
                     string badLettersR3 = "asdfghjkl";
                     string badLettersR4 = "zxcvbnm";
                     bool containsConsequtive = false;
-
+                 // loops to check if it has any of the bad letters and bad numbers listed above 
                     for (int i = 0; i < password.Length - 3; i++)
                     {
                         if (badNumbersR1.Contains(password.Substring(i, 4)) ||
@@ -96,6 +98,7 @@ namespace Password_Validator
                             break;
                         }
                     }
+                // if all these steps are passed then their password is validated and succeeded with flying colors
                   if (!containsConsequtive) 
                     
                     {
